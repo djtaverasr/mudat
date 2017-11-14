@@ -15,7 +15,6 @@ public class visualizar extends AppCompatActivity {
         String nom = b.getString("parametro");
 
         TextView textView = (TextView) findViewById(R.id.parame);
-
         textView.setText(nom);
      }
 }

@@ -27,10 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 String parametro = txtnombre.getText().toString();
                 intent.putExtra("parametro", parametro);
                 startActivity(intent);
-
-
             }
         });
-
     }
 }
