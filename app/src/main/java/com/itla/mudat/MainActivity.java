@@ -1,6 +1,5 @@
 package com.itla.mudat;
 
-import android.app.usage.NetworkStats;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Hola: " + txtnombre.getText().toString(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, visualizar.class);
+                Intent intent = new Intent(MainActivity.this, Visualizar.class);
                 String parametro = txtnombre.getText().toString();
                 intent.putExtra("parametro", parametro);
                 startActivity(intent);

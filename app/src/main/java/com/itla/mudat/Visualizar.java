@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class visualizar extends AppCompatActivity {
+public class Visualizar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
