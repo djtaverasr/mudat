@@ -18,3 +18,4 @@ public class Visualizar extends AppCompatActivity {
         textView.setText(nom);
      }
 }
+
