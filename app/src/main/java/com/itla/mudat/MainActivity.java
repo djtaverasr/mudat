@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itla.mudat.view.RegistroUsuario;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,17 +17,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText  txtnombre = (EditText) findViewById(R.id.etLectura);
         Button boton = (Button) findViewById(R.id.bMensaje);
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Hola: " + txtnombre.getText().toString(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, Visualizar.class);
-                String parametro = txtnombre.getText().toString();
-                intent.putExtra("parametro", parametro);
+
+                Intent intent = new Intent(MainActivity.this, RegistroUsuario.class);
                 startActivity(intent);
+
+
             }
         });
     }
