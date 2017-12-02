@@ -6,13 +6,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.R;
+import com.itla.mudat.dao.UsuarioDbo;
 
 public class RegistroUsuario extends AppCompatActivity {
+    UsuarioDbo usuarioDbo;
+    final private String LOG_T = "Registro usuario";
     private EditText etNombre;
     private EditText etIdentifiacion;
     private EditText etEmail;
@@ -20,12 +21,11 @@ public class RegistroUsuario extends AppCompatActivity {
     private EditText etTipoUsuario;
     private EditText etClave;
     private Button bGuardar;
-    private Button bDescatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_usuario);
+        setContentView(R.layout.act_registro_usuario);
 
         etNombre = (EditText) findViewById(R.id.etNombre);
         etIdentifiacion = (EditText) findViewById(R.id.etIdentificacion);
@@ -34,28 +34,30 @@ public class RegistroUsuario extends AppCompatActivity {
         etClave = (EditText) findViewById(R.id.etClave);
         etTipoUsuario = (EditText) findViewById(R.id.etTipoUsuario);
         bGuardar = (Button) findViewById(R.id.bGuardar);
-        bDescatar = (Button) findViewById(R.id.bDescatar);
 
+        Bundle parametros = getIntent().getExtras();
+
+        if (parametros.getSerializable("usuario") != null){
+            Usuario usuario = (Usuario) parametros.getSerializable("usuario");
+        }
+
+        usuarioDbo = new UsuarioDbo(this);
         bGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Usuario u = new Usuario();
-                u.setNombre(etNombre.getText().toString().trim());
-                u.setIdentificacion(etIdentifiacion.getText().toString().trim());
-                u.setTipoUsuario(TipoUsuario.CLIENTE);
-                u.setEmail(etEmail.getText().toString().trim());
-                u.setTelefono(etTelefono.getText().toString().trim());
-                u.setClave(etClave.getText().toString().trim());
-                u.setEstatus(true);
 
-                Log.i("Registro usuario ", u.toString());
+                Usuario usuario = new Usuario();
+                usuario.setNombre(etNombre.getText().toString().trim());
+                usuario.setIdentificacion(etIdentifiacion.getText().toString().trim());
+                usuario.setTipoUsuario(TipoUsuario.CLIENTE);
+                usuario.setEmail(etEmail.getText().toString().trim());
+                usuario.setTelefono(etTelefono.getText().toString().trim());
+                usuario.setClave(etClave.getText().toString().trim());
+                usuario.setEstatus(true);
 
-                //Toast.makeText(RegistroUsuario.this, u.toString(), Toast.LENGTH_SHORT).show();
+                Log.i(LOG_T, usuario.toString());
+                usuarioDbo.crear(usuario);
             }
         });
-
-
-
-
     }
 }

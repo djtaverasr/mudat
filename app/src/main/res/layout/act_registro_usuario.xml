@@ -125,11 +125,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar"/>
+
             <Button
-                android:id="@+id/bDescatar"
+                android:id="@+id/bEnlistar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descartar"/>
+                android:text="Enlistar"/>
         </LinearLayout>
     </LinearLayout>
 
