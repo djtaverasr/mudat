@@ -21,6 +21,7 @@ public class RegistroUsuario extends AppCompatActivity {
     private EditText etTipoUsuario;
     private EditText etClave;
     private Button bGuardar;
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,13 @@ public class RegistroUsuario extends AppCompatActivity {
 
         Bundle parametros = getIntent().getExtras();
 
-        if (parametros.getSerializable("usuario") != null){
+        if (parametros!= null && parametros.getSerializable("usuario") != null){
             Usuario usuario = (Usuario) parametros.getSerializable("usuario");
+            etNombre.setText(usuario.getNombre());
+            etIdentifiacion.setText(usuario.getIdentificacion());
+            etEmail.setText(usuario.getEmail());
+            etTelefono.setText(usuario.getTelefono());
+            etClave.setText(usuario.getClave());
         }
 
         usuarioDbo = new UsuarioDbo(this);
@@ -46,7 +52,9 @@ public class RegistroUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Usuario usuario = new Usuario();
+                if (usuario == null){
+                    usuario = new Usuario();
+                }
                 usuario.setNombre(etNombre.getText().toString().trim());
                 usuario.setIdentificacion(etIdentifiacion.getText().toString().trim());
                 usuario.setTipoUsuario(TipoUsuario.CLIENTE);
@@ -55,9 +63,11 @@ public class RegistroUsuario extends AppCompatActivity {
                 usuario.setClave(etClave.getText().toString().trim());
                 usuario.setEstatus(true);
 
+
                 Log.i(LOG_T, usuario.toString());
                 usuarioDbo.crear(usuario);
             }
         });
     }
+
 }

@@ -4,10 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +20,6 @@ public class UsuarioDbo {
     }
 
     public void crear(Usuario usuario){
-        SQLiteDatabase db = connection.getWritableDatabase();
-
         ContentValues cv = new ContentValues();
         cv.put("nombre", usuario.getNombre());
         cv.put("tipoUsuario", usuario.getTipoUsuario().toString());
@@ -34,7 +29,13 @@ public class UsuarioDbo {
         cv.put("clave", usuario.getClave());
         //cv.put("estatus", usuario.isEstatus());
 
-        db.insert("usuario", null, cv);
+        SQLiteDatabase db = connection.getWritableDatabase();
+
+        if (usuario.getId() == 0){
+            Long id = db.insert("usuario", null, cv);
+        } else {
+            db.update("usuario", cv, "id = " +usuario.getId(), null);
+        }
         db.close();
     }
 
