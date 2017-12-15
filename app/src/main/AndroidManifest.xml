@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".view.RegistroUsuario" />
         <activity android:name=".view.ListaUsuario" />
-        <activity android:name=".view.Anuncios"></activity>
+        <activity android:name=".view.Anuncios" />
+        <activity android:name=".view.RegistrarAnuncio"></activity>
     </application>
 
 </manifest>

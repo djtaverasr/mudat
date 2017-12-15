@@ -23,10 +23,12 @@ public class DbConnection extends SQLiteOpenHelper {
         Log.i(LOG_T, "Iniciando Oncreate");
 
         db.execSQL(SqlHelperSchema.USUARIO_TABLE);
+        db.execSQL(SqlHelperSchema.CATEGORIA_TABLE);
+        db.execSQL(SqlHelperSchema.ANUNCIO_TABLE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
     }
 }

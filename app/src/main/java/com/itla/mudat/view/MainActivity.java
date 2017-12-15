@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bCategoria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this, .class);
+//        bCategoria.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, Categorias.class);
 //                startActivity(intent);
-            }
-        });
+//            }
+//        });
 
 
     }

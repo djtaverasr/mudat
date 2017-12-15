@@ -1,6 +1,7 @@
 package com.itla.mudat.view;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,12 +40,11 @@ public class ListaUsuario extends AppCompatActivity {
                 Usuario u = (Usuario) adapterView.getItemAtPosition(i);
                 rUsuario.putExtra("usuario", u);
                 startActivity(rUsuario);
-
             }
         });
 
-        Button bAgregar = (Button) findViewById(R.id.bAgregar);
-        bAgregar.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAgregarUsuario);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListaUsuario.this, RegistroUsuario.class);

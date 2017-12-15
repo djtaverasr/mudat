@@ -4,7 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import com.itla.mudat.Entity.Anuncio;
+import com.itla.mudat.Entity.Categoria;
+import com.itla.mudat.Entity.Usuario;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +19,7 @@ import java.util.List;
 
 public class AnuncioDbo {
     private DbConnection connection;
+    private static final SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
 
     public AnuncioDbo(Context context) {
         connection = new DbConnection(context);
@@ -23,7 +29,7 @@ public class AnuncioDbo {
         ContentValues cv = new ContentValues();
         cv.put("categoria", anuncio.getCategoria().toString());
         cv.put("usuario", anuncio.getUsuario().toString());
-        cv.put("fecha", anuncio.getFecha().toString());
+        cv.put("fecha", DF.format(anuncio.getFecha()));
         cv.put("condicion", anuncio.getCondicion());
         cv.put("precio", anuncio.getPrecio());
         cv.put("titulo", anuncio.getTitulo());
@@ -38,29 +44,38 @@ public class AnuncioDbo {
             db.update("anuncio", cv, "id = " + anuncio.getId(), null);
         }
         db.close();
+        Log.i(" Registro anuncio", "creado");
     }
 
     public List<Anuncio> buscar(){
         List<Anuncio> anuncios = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
         String columnas[] = new String[] {"id", "categoria", "usuario", "fecha", "condicion", "precio", "titulo", "ubicacion", "descripcion"};
-        Cursor cursor = db.query("anuncio", columnas, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT a.*, u.nombre AS u_nombre, c.nombre FROM anuncio a, usuario u, categoria c " + "WHERE a.usuario = u.id and a.categoria = c.id", null);
 
         cursor.moveToFirst();
-
         while (!cursor.isAfterLast()){
-            Anuncio u = new Anuncio();
-            u.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            //u.setCategoria(cursor.getString(cursor.getColumnIndex("categoria")));
-            //u.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
-            //u.setFecha(cursor.get(cursor.getColumnIndex("fecha")));
-            u.setCondicion(cursor.getString(cursor.getColumnIndex("condicion")));
-            u.setPrecio(cursor.getDouble(cursor.getColumnIndex("precio")));
-            u.setTitulo(cursor.getString(cursor.getColumnIndex("titulo")));
-            u.setUbicacion(cursor.getString(cursor.getColumnIndex("ubicacion")));
-            u.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
+            Anuncio anuncio = new Anuncio();
+            Usuario usuario = new Usuario();
+
+            usuario.setId(cursor.getInt(cursor.getColumnIndex("usuario")));
+            usuario.setNombre(cursor.getString(cursor.getColumnIndex("u_usuario")));
+
+            anuncio.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            anuncio.setCategoria(Categoria.valueOf(cursor.getString(cursor.getColumnIndex("categoria"))));
+            anuncio.setUsuario(usuario);
+            try {
+                anuncio.setFecha(DF.parse(cursor.getString(cursor.getColumnIndex("fecha"))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            anuncio.setCondicion(cursor.getString(cursor.getColumnIndex("condicion")));
+            anuncio.setPrecio(cursor.getDouble(cursor.getColumnIndex("precio")));
+            anuncio.setTitulo(cursor.getString(cursor.getColumnIndex("titulo")));
+            anuncio.setUbicacion(cursor.getString(cursor.getColumnIndex("ubicacion")));
+            anuncio.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
             cursor.moveToNext();
-            anuncios.add(u);
+            anuncios.add(anuncio);
         }
         cursor.close();
         db.close();

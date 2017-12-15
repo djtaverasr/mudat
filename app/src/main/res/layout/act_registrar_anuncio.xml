@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.itla.mudat.view.RegistroUsuario">
+    tools:context="com.itla.mudat.view.RegistrarAnuncio">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,106 +18,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNombre"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:text="Titulo" />
 
             <EditText
-                android:id="@+id/etNombre"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="Nombre"
-                android:inputType="textPersonName" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvIdentificacion"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Identificación" />
-
-            <EditText
-                android:id="@+id/etIdentificacion"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="Identificación"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvTelefono"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Telefono" />
-
-            <EditText
-                android:id="@+id/etTelefono"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="Telefono"
-                android:inputType="phone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvTipoUsuario"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Tipo de usuario" />
-
-            <RadioGroup
-                android:id="@+id/rgTipoUsuario"
+                android:id="@+id/etTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/rbCliente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cliente" />
-
-                <RadioButton
-                    android:id="@+id/rbPublicador"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Publicador"/>
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Email" />
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:hint="Titulo"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,36 +36,144 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvClave"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Clave" />
+                android:text="Descripcion" />
 
             <EditText
-                android:id="@+id/etClave"
-                android:layout_width="250dp"
+                android:id="@+id/etDescripcion"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Clave"
-                android:inputType="textPassword" />
+                android:hint="Descripcion"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Categoria" />
+
+            <EditText
+                android:id="@+id/etCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Categoria"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Usuario" />
+
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:inputType="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Fecha" />
+
+            <EditText
+                android:id="@+id/etFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Fecha"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Condición" />
+
+            <EditText
+                android:id="@+id/etCondicion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Condición"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Precio" />
+
+            <EditText
+                android:id="@+id/etPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Precio"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Ubicacion" />
+
+            <EditText
+                android:id="@+id/etUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Ubicacion"
+                android:inputType="text" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/ruGuardar"
+                android:id="@+id/raGuardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar" />
 
             <Button
-                android:id="@+id/ruCambiar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enlistar" />
+                android:text="Descartar" />
         </LinearLayout>
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

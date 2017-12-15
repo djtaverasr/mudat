@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.R;
 
@@ -54,7 +55,9 @@ public class UsuarioListAdapter extends BaseAdapter {
 
         Usuario u = usuarios.get(i);
         tvNombre.setText(u.getNombre());
-        tvEmail.setText(u.getEmail());
+        //tvEmail.setText(u.getEmail());
+        //TODO
+        tvEmail.setText(String.valueOf(u.getTipoUsuario()));
 
         return view;
     }

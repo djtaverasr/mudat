@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class UsuarioDbo {
         connection = new DbConnection(context);
     }
 
-    public void crear(Usuario usuario){
+    public void crear(Usuario usuario) {
         ContentValues cv = new ContentValues();
         cv.put("nombre", usuario.getNombre());
         cv.put("tipoUsuario", usuario.getTipoUsuario().toString());
@@ -31,32 +32,31 @@ public class UsuarioDbo {
 
         SQLiteDatabase db = connection.getWritableDatabase();
 
-        if (usuario.getId() == 0){
+        if (usuario.getId() == 0) {
             Long id = db.insert("usuario", null, cv);
         } else {
-            db.update("usuario", cv, "id = " +usuario.getId(), null);
+            db.update("usuario", cv, "id = " + usuario.getId(), null);
         }
         db.close();
     }
 
-    public List<Usuario> buscar(){
+    public List<Usuario> buscar() {
         List<Usuario> usuarios = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        String columnas[] = new String[] {"id", "nombre","identificacion","email","telefono","clave"};
+        String columnas[] = new String[]{"id", "nombre", "tipousuario", "identificacion", "email", "telefono", "clave"};
         Cursor cursor = db.query("usuario", columnas, null, null, null, null, null);
 
         cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
             Usuario u = new Usuario();
             u.setId(cursor.getInt(cursor.getColumnIndex("id")));
             u.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
-//            u.setTipoUsuario(TipoUsuario.valueOf(cursor.getString(cursor.getColumnIndex("tipoUsuario"))));
+            u.setTipoUsuario(TipoUsuario.valueOf(cursor.getString(cursor.getColumnIndex("tipousuario"))));
             u.setIdentificacion(cursor.getString(cursor.getColumnIndex("identificacion")));
             u.setEmail(cursor.getString(cursor.getColumnIndex("email")));
             u.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
             u.setClave(cursor.getString(cursor.getColumnIndex("clave")));
-            //u.setEstatus(cursor.getString(cursor.getColumnIndex("estatus")));
+//            u.setEstatus(Boolean.parseBoolean(a));
             cursor.moveToNext();
             usuarios.add(u);
         }

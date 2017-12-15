@@ -1,15 +1,16 @@
 package com.itla.mudat.Entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Diony Taveras on 18/11/2017.
  */
 
-public class Anuncio {
+public class Anuncio implements Serializable {
     private int id;
     private Categoria categoria;
-    private Usuario usuario;
+    private Usuario id_usuario;
     private Date fecha;
     private String condicion;
     private double precio;
@@ -22,7 +23,7 @@ public class Anuncio {
         return "Anuncio{" +
                 "id=" + id +
                 ", categoria=" + categoria +
-                ", usuario=" + usuario +
+                ", usuario=" + id_usuario +
                 ", fecha=" + fecha +
                 ", condicion='" + condicion + '\'' +
                 ", precio=" + precio +
@@ -49,11 +50,11 @@ public class Anuncio {
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return id_usuario;
     }
 
     public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+        this.id_usuario = usuario;
     }
 
     public Date getFecha() {
