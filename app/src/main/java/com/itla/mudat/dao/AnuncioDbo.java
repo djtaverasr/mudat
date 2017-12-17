@@ -27,8 +27,8 @@ public class AnuncioDbo {
 
     public void crear(Anuncio anuncio){
         ContentValues cv = new ContentValues();
-        cv.put("categoria", anuncio.getCategoria().toString());
-        cv.put("usuario", anuncio.getUsuario().toString());
+        cv.put("categoria", anuncio.getCategoria().getId());
+        cv.put("usuario", anuncio.getUsuario().getId());
         cv.put("fecha", DF.format(anuncio.getFecha()));
         cv.put("condicion", anuncio.getCondicion());
         cv.put("precio", anuncio.getPrecio());
@@ -40,29 +40,33 @@ public class AnuncioDbo {
 
         if (anuncio.getId() == 0){
             Long id = db.insert("anuncio", null, cv);
+            anuncio.setId(id.intValue());
         } else {
             db.update("anuncio", cv, "id = " + anuncio.getId(), null);
         }
         db.close();
-        Log.i(" Registro anuncio", "creado");
+        Log.i(" Registro anuncio", "creado  = " +anuncio.getId());
     }
 
     public List<Anuncio> buscar(){
         List<Anuncio> anuncios = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        String columnas[] = new String[] {"id", "categoria", "usuario", "fecha", "condicion", "precio", "titulo", "ubicacion", "descripcion"};
-        Cursor cursor = db.rawQuery("SELECT a.*, u.nombre AS u_nombre, c.nombre FROM anuncio a, usuario u, categoria c " + "WHERE a.usuario = u.id and a.categoria = c.id", null);
+        Cursor cursor = db.rawQuery("SELECT a.*, u.nombre AS u_nombre, c.nombre as c_nombre FROM anuncio a, usuario u, categoria c  WHERE a.usuario = u.id and a.categoria = c.id", null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             Anuncio anuncio = new Anuncio();
             Usuario usuario = new Usuario();
+            Categoria categoria = new Categoria();
 
             usuario.setId(cursor.getInt(cursor.getColumnIndex("usuario")));
-            usuario.setNombre(cursor.getString(cursor.getColumnIndex("u_usuario")));
+            usuario.setNombre(cursor.getString(cursor.getColumnIndex("u_nombre")));
+
+            categoria.setId(cursor.getInt((cursor.getColumnIndex("categoria"))));
+            categoria.setNombre(cursor.getString(cursor.getColumnIndex("c_nombre")));
 
             anuncio.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            anuncio.setCategoria(Categoria.valueOf(cursor.getString(cursor.getColumnIndex("categoria"))));
+            anuncio.setCategoria(categoria);
             anuncio.setUsuario(usuario);
             try {
                 anuncio.setFecha(DF.parse(cursor.getString(cursor.getColumnIndex("fecha"))));

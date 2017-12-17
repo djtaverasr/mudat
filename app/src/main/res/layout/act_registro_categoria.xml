@@ -4,25 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.itla.mudat.view.Categorias">
+    tools:context="com.itla.mudat.view.mantenimiento.RegistroCategoria">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/ListaCategoria"
-            android:layout_width="match_parent"
-            android:layout_height="492dp"></ListView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabAgregarCategoria"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre" />
+
+        <EditText
+            android:id="@+id/cNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/cGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_fab_agregar_usuario" />
+            android:text="Guardar"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

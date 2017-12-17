@@ -1,5 +1,6 @@
-package com.itla.mudat.view;
+package com.itla.mudat.view.mantenimiento;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,14 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.R;
 import com.itla.mudat.dao.UsuarioDbo;
+import com.itla.mudat.view.UsuarioActual;
+import com.itla.mudat.view.Usuarios;
+import com.itla.mudat.view.mudaT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,9 +30,7 @@ public class RegistroUsuario extends AppCompatActivity {
     private EditText etTelefono;
     private EditText etTipoUsuario;
     private EditText etClave;
-    private Button bGuardar, bCambiar;
-    private TextView tvTipoUsuario;
-    private RadioGroup rgTipoUsuario;
+    private Button bGuardar, bIniciar;
     private RadioButton rbCliente, rbPublicador;
     Usuario usuario;
 
@@ -47,10 +47,8 @@ public class RegistroUsuario extends AppCompatActivity {
         etClave = (EditText) findViewById(R.id.etClave);
         rbCliente = (RadioButton) findViewById(R.id.rbCliente);
         rbPublicador = (RadioButton) findViewById(R.id.rbPublicador);
-        rgTipoUsuario = (RadioGroup) findViewById(R.id.rgTipoUsuario);
-        tvTipoUsuario = (TextView) findViewById(R.id.tvTipoUsuario);
         bGuardar = (Button) findViewById(R.id.ruGuardar);
-        bCambiar = (Button) findViewById(R.id.ruCambiar);
+        bIniciar = (Button) findViewById(R.id.ruIniciar);
 
         //Listener Guardar
         bGuardar.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +59,13 @@ public class RegistroUsuario extends AppCompatActivity {
         });
 
         //Listener Guardar
-        bCambiar.setOnClickListener(new View.OnClickListener() {
+        bIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (usuario!=null && usuario.getId()>0){
+                if (usuario !=null && usuario.getId()> 0){
                     UsuarioActual.setUsuario(usuario);
+                    Toast.makeText(RegistroUsuario.this, "Bienvenido " + usuario.getNombre(), Toast.LENGTH_SHORT).show();
+                    login();
                 } else {
                     Toast.makeText(RegistroUsuario.this, "Usuario no permitido o no existe", Toast.LENGTH_LONG).show();
                 }
@@ -75,7 +75,8 @@ public class RegistroUsuario extends AppCompatActivity {
         //Importar
         Bundle parametros = getIntent().getExtras();
         if (parametros != null && parametros.getSerializable("usuario") != null) {
-            Usuario usuario = (Usuario) parametros.getSerializable("usuario");
+            usuario = (Usuario) parametros.getSerializable("usuario");
+
             etNombre.setText(usuario.getNombre());
             etIdentifiacion.setText(usuario.getIdentificacion());
             if (usuario.getTipoUsuario().equals(TipoUsuario.CLIENTE)){
@@ -87,6 +88,12 @@ public class RegistroUsuario extends AppCompatActivity {
             etTelefono.setText(usuario.getTelefono());
             etClave.setText(usuario.getClave());
         }
+    }
+
+    public void login(){
+        finish();
+        startActivity(new Intent(this, mudaT.class));
+        return;
     }
 
     private void registroUsuario() {
@@ -139,20 +146,13 @@ public class RegistroUsuario extends AppCompatActivity {
             Log.i(LOG_T, usuario.toString());
             usuarioDbo.crear(usuario);
 
-            Toast.makeText(this, "Usuario " + etNombre.getText().toString() + " Creado.", Toast.LENGTH_LONG).show();
-            limpiarCampos();
+            Toast.makeText(this, "Usuario " + etNombre.getText().toString() + " Guardado.", Toast.LENGTH_LONG).show();
+            finish();
+            Intent intent = new Intent(RegistroUsuario.this, Usuarios.class);
+            startActivity(intent);
         }
     }
 
-    public void limpiarCampos(){
-        etNombre.setText("");
-        etIdentifiacion.setText("");
-        etEmail.setText("");
-        etTelefono.setText("");
-        etClave.setText("");
-        rbCliente.setChecked(false);
-        rbPublicador.setChecked(false);
-    }
     public static boolean isEmailValid(String email) {
         boolean isValid = false;
 

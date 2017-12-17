@@ -15,7 +15,7 @@ public class DbConnection extends SQLiteOpenHelper {
     public static String LOG_T = "DbConnection";
 
     public DbConnection(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 3);
     }
 
     @Override
@@ -23,12 +23,14 @@ public class DbConnection extends SQLiteOpenHelper {
         Log.i(LOG_T, "Iniciando Oncreate");
 
         db.execSQL(SqlHelperSchema.USUARIO_TABLE);
-        db.execSQL(SqlHelperSchema.CATEGORIA_TABLE);
         db.execSQL(SqlHelperSchema.ANUNCIO_TABLE);
+        db.execSQL(SqlHelperSchema.CATEGORIA_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
+        db.execSQL("DROP TABLE IF EXISTS anuncio");
+        db.execSQL(SqlHelperSchema.ANUNCIO_TABLE);
     }
 }

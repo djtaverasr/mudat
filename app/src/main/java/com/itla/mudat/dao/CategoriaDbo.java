@@ -4,12 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import com.itla.mudat.Entity.Categoria;
+import com.itla.mudat.Entity.TipoUsuario;
+import com.itla.mudat.Entity.Usuario;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Diony Taveras on 25/11/2017.
+ * Created by Diony Taveras on 08/12/2017.
  */
 
 public class CategoriaDbo {
@@ -27,26 +32,27 @@ public class CategoriaDbo {
 
         if (categoria.getId() == 0){
             Long id = db.insert("categoria", null, cv);
+            categoria.setId(id.intValue());
         } else {
-            db.update("categoria", cv, "id = " +categoria.getId(), null);
+            db.update("categoria", cv, "id = " + categoria.getId(), null);
         }
         db.close();
+        Log.i(" Registro categoria", "creado  = " +categoria.getId());
     }
 
     public List<Categoria> buscar(){
         List<Categoria> categorias = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        String columnas[] = new String[] {"id", "nombre"};
+        String columnas[] = new String[]{"id", "nombre"};
         Cursor cursor = db.query("categoria", columnas, null, null, null, null, null);
 
         cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()){
-            Categoria u = new Categoria();
-            u.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            u.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
+        while (!cursor.isAfterLast()) {
+            Categoria categoria = new Categoria();
+            categoria.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            categoria.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
             cursor.moveToNext();
-            categorias.add(u);
+            categorias.add(categoria);
         }
         cursor.close();
         db.close();

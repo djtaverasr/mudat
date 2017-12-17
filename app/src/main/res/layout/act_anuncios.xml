@@ -12,36 +12,35 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <CheckBox
                 android:id="@+id/MisAnuncios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mis Anuncios" />
-
-            <Button
-                android:id="@+id/Actualizar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Actualizar" />
-
-            <Button
-                android:id="@+id/Nuevo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nuevo" />
-        </LinearLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:text="Mis Anuncios"/>
+        </RelativeLayout>
 
 
         <ListView
             android:id="@+id/ListaAnuncios"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="421dp">
 
         </ListView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/Nuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_fab_agregar_usuario" />
     </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

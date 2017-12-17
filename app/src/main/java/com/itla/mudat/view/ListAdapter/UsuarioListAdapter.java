@@ -52,12 +52,12 @@ public class UsuarioListAdapter extends BaseAdapter {
 
         TextView tvNombre = view.findViewById(R.id.lvNombre);
         TextView tvEmail = view.findViewById(R.id.lvEmail);
+        TextView tvTipoUsuario = view.findViewById(R.id.lvTipoUsuario);
 
-        Usuario u = usuarios.get(i);
-        tvNombre.setText(u.getNombre());
-        //tvEmail.setText(u.getEmail());
-        //TODO
-        tvEmail.setText(String.valueOf(u.getTipoUsuario()));
+        Usuario usuario = usuarios.get(i);
+        tvNombre.setText(usuario.getNombre());
+        tvTipoUsuario.setText(String.valueOf(usuario.getTipoUsuario()));
+        tvEmail.setText(usuario.getEmail());
 
         return view;
     }

@@ -19,5 +19,15 @@
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="18sp"/>
-
+    <TextView
+        android:id="@+id/lvTipoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo Usuario"
+        android:textSize="16sp"/>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary" />
 </LinearLayout>

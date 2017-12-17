@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.itla.mudat.view.RegistroUsuario">
+    tools:context="com.itla.mudat.view.mantenimiento.RegistroUsuario">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -150,10 +150,10 @@
                 android:text="Guardar" />
 
             <Button
-                android:id="@+id/ruCambiar"
+                android:id="@+id/ruIniciar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enlistar" />
+                android:text="Iniciar" />
         </LinearLayout>
     </LinearLayout>
 

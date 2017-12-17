@@ -4,30 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.itla.mudat.view.MainActivity">
+    tools:context="com.itla.mudat.view.mudaT">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/mUsuarioActual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:text="Usuario"/>
+
         <Button
+            android:layout_marginTop="10dp"
             android:id="@+id/bUsuarios"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Usuarios" />
+            android:layout_height="150dp"
+            android:text="Usuarios"
+            android:textSize="20dp"/>
 
         <Button
+            android:layout_marginTop="10dp"
             android:id="@+id/bAnuncios"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Anuncios" />
+            android:layout_height="150dp"
+            android:text="Anuncios"
+            android:textSize="20dp"/>
 
         <Button
-            android:id="@+id/bCategoria"
+            android:layout_marginTop="10dp"
+            android:id="@+id/bCategorias"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Categoria" />
+            android:layout_height="150dp"
+            android:text="Categorias"
+            android:textSize="20dp"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

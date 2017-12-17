@@ -9,17 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.mudaT">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.RegistroUsuario" />
-        <activity android:name=".view.ListaUsuario" />
+        <activity android:name=".view.mantenimiento.RegistroUsuario" />
+        <activity android:name=".view.Usuarios" />
         <activity android:name=".view.Anuncios" />
-        <activity android:name=".view.RegistrarAnuncio"></activity>
+        <activity android:name=".view.mantenimiento.RegistroAnuncio" />
+        <activity android:name=".view.mantenimiento.RegistroCategoria" />
+        <activity android:name=".view.Categorias"></activity>
     </application>
 
 </manifest>
