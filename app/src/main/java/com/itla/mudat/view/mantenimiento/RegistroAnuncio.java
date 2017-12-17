@@ -61,7 +61,7 @@ public class RegistroAnuncio extends AppCompatActivity {
             etTitulo.setText(anuncio.getTitulo());
             etDescripcion.setText(anuncio.getDescripcion());
             etCategoria.setText("1");
-            etFecha.setText(String.valueOf(anuncio.getFecha()));
+            etFecha.setText(DF.format(anuncio.getFecha()));
             etCondicion.setText(anuncio.getCondicion());
             etPrecio.setText(String.valueOf(anuncio.getPrecio()));
             etUbicacion.setText(anuncio.getUbicacion());

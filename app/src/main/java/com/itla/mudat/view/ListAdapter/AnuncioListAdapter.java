@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
 public class AnuncioListAdapter extends BaseAdapter {
     private List<Anuncio> anuncios;
     private Activity context;
+    private static final SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
 
     public AnuncioListAdapter(List<Anuncio> anuncios, Activity context) {
         this.anuncios = anuncios;
@@ -56,16 +58,16 @@ public class AnuncioListAdapter extends BaseAdapter {
         TextView tvUsuario = view.findViewById(R.id.aUsuario);
         TextView tvUbicacion = view.findViewById(R.id.aUbicacion);
 
-        Anuncio u = anuncios.get(i);
-        tvId.setText(String.valueOf(u.getId()));
-        tvTitulo.setText(u.getTitulo());
-        tvDescripcion.setText("Descripción: " + u.getDescripcion());
-        tvCategoria.setText("Categoria.: " + u.getCategoria().getNombre());
-        tvCondicion.setText("Condición: " + u.getCondicion());
-        tvFecha.setText(u.getFecha().toString());
-        tvPrecio.setText("$ " + String.valueOf(u.getPrecio()));
-        tvUsuario.setText("Usuario: " + u.getUsuario().getNombre());
-        tvUbicacion.setText("Lugar: " + u.getUbicacion());
+        Anuncio anuncio = anuncios.get(i);
+        tvId.setText(String.valueOf(anuncio.getId()));
+        tvTitulo.setText(anuncio.getTitulo());
+        tvDescripcion.setText("Descripción: " + anuncio.getDescripcion());
+        tvCategoria.setText("Categoria.: " + anuncio.getCategoria().getNombre());
+        tvCondicion.setText("Condición: " + anuncio.getCondicion());
+        tvFecha.setText(DF.format(anuncio.getFecha()));
+        tvPrecio.setText("$ " + String.valueOf(anuncio.getPrecio()));
+        tvUsuario.setText("Usuario: " + anuncio.getUsuario().getNombre());
+        tvUbicacion.setText("Lugar: " + anuncio.getUbicacion());
 
         return view;
     }

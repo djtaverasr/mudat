@@ -5,12 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.Entity.Categoria;
 import com.itla.mudat.Entity.Usuario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,6 +72,8 @@ public class AnuncioDbo {
             anuncio.setCategoria(categoria);
             anuncio.setUsuario(usuario);
             try {
+                String fe = cursor.getString(cursor.getColumnIndex("fecha"));
+                Log.i("fecha ", fe);
                 anuncio.setFecha(DF.parse(cursor.getString(cursor.getColumnIndex("fecha"))));
             } catch (ParseException e) {
                 e.printStackTrace();
